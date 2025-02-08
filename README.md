@@ -9,9 +9,9 @@ A user-friendly tool for designing websites with drag-and-drop elements. Customi
 
 ## Demo
 
-video link - https://www.loom.com/share/aae6d513f7744961a69ac8ec4047d360?sid=4a486b86-2031-4909-bd50-e8e9d1f17880
-
 demo link - https://website-builder-prash.netlify.app/
+
+video link - https://www.loom.com/share/aae6d513f7744961a69ac8ec4047d360?sid=4a486b86-2031-4909-bd50-e8e9d1f17880
 
 ## Tech Stack
 
