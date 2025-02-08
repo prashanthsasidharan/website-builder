@@ -30,26 +30,9 @@ const elementTypes = [
   {
     category: 'Basic',
     items: [
-      { type: 'heading', icon: FaHeading, label: 'Heading' },
       { type: 'text', icon: FaFont, label: 'Text' },
       { type: 'image', icon: FaImage, label: 'Image' },
       { type: 'button', icon: FaSquare, label: 'Button' },
-    ]
-  },
-  {
-    category: 'Advanced',
-    items: [
-      { type: 'form', icon: FaWpforms, label: 'Form' },
-      { type: 'video', icon: FaVideo, label: 'Video' },
-      { type: 'list', icon: FaList, label: 'List' },
-      { type: 'table', icon: FaTable, label: 'Table' },
-    ]
-  },
-  {
-    category: 'Custom',
-    items: [
-      { type: 'html', icon: FaCode, label: 'Custom HTML' },
-      { type: 'map', icon: FaMapMarkerAlt, label: 'Map' },
     ]
   }
 ]

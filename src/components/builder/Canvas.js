@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react'
 import { FaPlus, FaColumns, FaTrash, FaCopy, FaCog, FaGripVertical } from 'react-icons/fa'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { TextElement, ImageElement, ButtonElement, FormElement } from './BuilderElements'
+import { TextElement, ImageElement, ButtonElement } from './BuilderElements'
 import ColumnLayout from './ColumnLayout'
 import Sidebar from './Sidebar'
 
@@ -207,12 +207,14 @@ const Canvas = ({ sections = [], setSections }) => {
             <Flex
               justify="center"
               align="center"
+              flexDirection="column"
               minH="200px"
               border="2px dashed"
               borderColor="gray.200"
               m={4}
               rounded="md"
             >
+              <Text fontSize="lg" fontWeight="semibold">No sections yet. Add a section to get started.</Text>
               <IconButton
                 icon={<FaPlus />}
                 onClick={addSection}
@@ -262,21 +264,23 @@ const Canvas = ({ sections = [], setSections }) => {
             </Droppable>
           )}
           
-          <Flex
-            justify="center"
-            py={4}
-            borderTop="2px dashed"
-            borderColor="gray.200"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <IconButton
-              icon={<FaPlus />}
-              onClick={addSection}
-              size="md"
-              variant="ghost"
-              aria-label="Add new section"
-            />
-          </Flex>
+          {sections.length !== 0 ? (
+            <Flex
+              justify="center"
+              py={4}
+              borderTop="2px dashed"
+              borderColor="gray.200"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <IconButton
+                icon={<FaPlus />}
+                onClick={addSection}
+                size="md"
+                variant="ghost"
+                aria-label="Add new section"
+              />
+            </Flex>
+          ) : null}
         </Box>
       </Flex>
 
@@ -345,8 +349,6 @@ const Section = ({
                 return <ImageElement {...props} />
               case 'button':
                 return <ButtonElement {...props} />
-              case 'form':
-                return <FormElement {...props} />
               default:
                 return null
             }
@@ -453,7 +455,7 @@ const Section = ({
           <ColumnLayout
             onSelectLayout={(layout) => onLayoutChange(section.id, layout)}
           />
-          <IconButton
+          {/* <IconButton
             icon={<FaCog />}
             size="sm"
             aria-label="Settings"
@@ -464,7 +466,7 @@ const Section = ({
             size="sm"
             aria-label="Duplicate"
             variant="ghost"
-          />
+          /> */}
           <IconButton
             icon={<FaTrash />}
             size="sm"

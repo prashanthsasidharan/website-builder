@@ -24,50 +24,38 @@ const layouts = [
     name: '1 Column',
     icon: '1',
     columns: [1],
-    preview: [12]
+    preview: ['1fr']
   },
   {
     name: '2 Columns',
     icon: '2',
     columns: [1, 1],
-    preview: [6, 6]
+    preview: ['1fr', '1fr']
   },
   {
     name: '3 Columns',
     icon: '3',
     columns: [1, 1, 1],
-    preview: [4, 4, 4]
+    preview: ['1fr', '1fr', '1fr']
   },
   {
     name: '4 Columns',
     icon: '4',
     columns: [1, 1, 1, 1],
-    preview: [3, 3, 3, 3]
+    preview: ['1fr', '1fr', '1fr', '1fr']
   },
   {
     name: 'Left Sidebar',
     icon: '1-2',
     columns: [1, 2],
-    preview: [4, 8]
+    preview: ['30px', '1fr']
   },
   {
     name: 'Right Sidebar',
     icon: '2-1',
     columns: [2, 1],
-    preview: [8, 4]
+    preview: ['1fr', '30px']
   },
-  {
-    name: 'Three With Sidebar',
-    icon: '1-3',
-    columns: [1, 3],
-    preview: [3, 9]
-  },
-  {
-    name: 'Three With Main',
-    icon: '3-1',
-    columns: [3, 1],
-    preview: [9, 3]
-  }
 ]
 
 const ColumnLayout = ({ onSelectLayout }) => {
@@ -110,6 +98,7 @@ const ColumnLayout = ({ onSelectLayout }) => {
                     <Box w="100%" h="40px">
                       <SimpleGrid
                         columns={layout.columns.length}
+                        templateColumns={layout.preview.join(' ')}
                         gap={2}
                         height="100%"
                       >
@@ -118,7 +107,6 @@ const ColumnLayout = ({ onSelectLayout }) => {
                             key={i}
                             bg="gray.200"
                             height="100%"
-                            gridColumn={`span ${width}`}
                           />
                         ))}
                       </SimpleGrid>

@@ -137,7 +137,7 @@ const Navbar = ({ sections }) => {
 
         {/* Right Section */}
         <Flex gap={2}>
-          <ButtonGroup size="sm" variant="ghost">
+          {/* <ButtonGroup size="sm" variant="ghost">
             <Menu>
               <Tooltip label="Sections">
                 <MenuButton as={IconButton} icon={<FaBars />} aria-label="Sections">
@@ -182,7 +182,7 @@ const Navbar = ({ sections }) => {
                 <MenuItem>Manage Elements</MenuItem>
               </MenuList>
             </Menu>
-          </ButtonGroup>
+          </ButtonGroup> */}
 
           <ButtonGroup size="sm" variant="ghost">
             <Tooltip label="Preview">
