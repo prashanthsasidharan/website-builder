@@ -1,5 +1,5 @@
 import { Box, Button, Input, IconButton, Flex, Select } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaEdit, FaCheck, FaTimes } from 'react-icons/fa'
 
 const ButtonElement = ({ text, variant, colorScheme, onUpdate }) => {
@@ -7,6 +7,10 @@ const ButtonElement = ({ text, variant, colorScheme, onUpdate }) => {
   const [buttonText, setButtonText] = useState(text || 'Click me')
   const [buttonVariant, setButtonVariant] = useState(variant || 'solid')
   const [buttonColor, setButtonColor] = useState(colorScheme || 'blue')
+
+  useEffect(() => {
+    handleSave();
+  }, [])
 
   const handleSave = () => {
     onUpdate({
