@@ -8,7 +8,9 @@ import {
   MenuList,
   MenuItem,
   Tooltip,
-  useDisclosure
+  useDisclosure,
+  Toast,
+  useToast
 } from '@chakra-ui/react'
 import {
   FaArrowLeft,
@@ -33,6 +35,20 @@ const Navbar = ({ sections }) => {
     onOpen: onPreviewOpen,
     onClose: onPreviewClose
   } = useDisclosure()
+
+  const toast = useToast();
+
+  const handleSave = () => {
+    localStorage.setItem('sections', JSON.stringify(sections));
+    toast({
+      title: 'Website builder sections saved!!!',
+      status: 'success',
+      duration: 3000,
+      isClosable: true,
+      position: "top-right",
+      variant: "left-accent",
+    })
+  }
 
   const handlePreview = () => {
     console.log('Preview clicked, sections:', sections)
@@ -181,6 +197,7 @@ const Navbar = ({ sections }) => {
                 icon={<FaSave />}
                 aria-label="Save"
                 colorScheme="blue"
+                onClick={handleSave}
               />
             </Tooltip>
           </ButtonGroup>

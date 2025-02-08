@@ -75,11 +75,11 @@ const ImageElement = ({ src, alt, onUpdate }) => {
 
   return (
     <Box position="relative" p={2} _hover={{ bg: 'gray.50' }}>
-      {imageUrl ? (
+      {src ? (
         <Box position="relative">
           <Image
-            src={imageUrl}
-            alt={imageAlt}
+            src={src}
+            alt={alt}
             w="full"
             objectFit="cover"
           />

@@ -6,7 +6,10 @@ import Canvas from './components/builder/Canvas';
 import { useState } from 'react';
 
 function App() {
-  const [sections, setSections] = useState([]);
+  const [sections, setSections] = useState(() => {
+    const savedSections = localStorage.getItem('sections');
+    return savedSections ? JSON.parse(savedSections) : [];
+  });
 
   return (
     <ChakraProvider>

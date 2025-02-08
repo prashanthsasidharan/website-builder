@@ -36,28 +36,7 @@ const Canvas = ({ sections = [], setSections }) => {
     setSections([...sections, newSection])
   }
 
-  const addElement = (columnId, elementType) => {
-    const newElement = {
-      id: `element-${Date.now()}`,
-      type: elementType,
-      content: '',
-    }
-
-    setSections(sections.map(section => ({
-      ...section,
-      columns: section.columns.map(column => {
-        if (column.id === columnId) {
-          return {
-            ...column,
-            elements: [...column.elements, newElement]
-          }
-        }
-        return column
-      })
-    })))
-  }
-
-  const handleElementSelect = (columnId, elementType) => {
+  const handleElementSelect = (elementType) => {
     const newElement = {
       id: `element-${Date.now()}`,
       type: elementType,
@@ -67,7 +46,7 @@ const Canvas = ({ sections = [], setSections }) => {
     setSections(sections.map(section => ({
       ...section,
       columns: section.columns.map(column => {
-        if (column.id === columnId) {
+        if (column.id === selectedColumnId) {
           return {
             ...column,
             elements: [...column.elements, newElement]
@@ -325,7 +304,7 @@ const Section = ({
 
   const renderElement = (element, columnId, provided, snapshot) => {
     const props = {
-      content: element.content,
+      ...element.content,
       onUpdate: (newContent) => onUpdateElement(columnId, element.id, newContent)
     }
 

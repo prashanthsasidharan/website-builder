@@ -66,7 +66,7 @@ const DraggableElement = ({ children, onDragStart, onDragEnd, onDrop }) => {
           _groupHover={{ opacity: 1 }}
           transition="opacity 0.2s"
         >
-          ⋮⋮
+          ⋮
         </Box>
         {children}
       </Box>
