@@ -455,18 +455,6 @@ const Section = ({
           <ColumnLayout
             onSelectLayout={(layout) => onLayoutChange(section.id, layout)}
           />
-          {/* <IconButton
-            icon={<FaCog />}
-            size="sm"
-            aria-label="Settings"
-            variant="ghost"
-          />
-          <IconButton
-            icon={<FaCopy />}
-            size="sm"
-            aria-label="Duplicate"
-            variant="ghost"
-          /> */}
           <IconButton
             icon={<FaTrash />}
             size="sm"
