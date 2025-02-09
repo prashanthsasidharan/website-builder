@@ -17,23 +17,28 @@ const Canvas = ({ sections = [], setSections }) => {
   const [selectedSection, setSelectedSection] = useState(null)
   const [selectedColumnId, setSelectedColumnId] = useState(null)
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen: isLayoutOpen, onOpen: onLayoutOpen, onClose: onLayoutClose } = useDisclosure()
 
   const addSection = (e) => {
     if (e) {
-      e.stopPropagation() // Prevent event bubbling
+      e.stopPropagation()
     }
-    
+    console.log('addSection called')
+    onLayoutOpen()
+  }
+
+  const handleNewSectionLayout = (layout) => {
     const newSection = {
       id: Date.now(),
       type: 'section',
-      columns: [
-        {
-          id: `column-${Date.now()}`,
-          elements: []
-        }
-      ]
+      columns: layout.columns.map((span, index) => ({
+        id: `column-${Date.now()}-${index}`,
+        elements: [],
+        span
+      }))
     }
     setSections([...sections, newSection])
+    onLayoutClose()
   }
 
   const handleElementSelect = (elementType) => {
@@ -83,7 +88,7 @@ const Canvas = ({ sections = [], setSections }) => {
   const handleLayoutChange = (sectionId, newLayout) => {
     setSections(sections.map(section => {
       if (section.id === sectionId) {
-        const newColumns = newLayout.map((span, index) => {
+        const newColumns = newLayout.columns.map((span, index) => {
           const existingColumn = section.columns[index] || {
             id: `column-${Date.now()}-${index}`,
             elements: []
@@ -284,6 +289,12 @@ const Canvas = ({ sections = [], setSections }) => {
         </Box>
       </Flex>
 
+      <ColumnLayout
+        isOpen={isLayoutOpen}
+        onClose={onLayoutClose}
+        onSelectLayout={handleNewSectionLayout}
+      />
+
       <Sidebar
         isOpen={isOpen}
         onClose={onClose}
@@ -304,7 +315,8 @@ const Section = ({
   dragHandleProps,
   isDragging
 }) => {
-  const [isHovered, setIsHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false);
+  const { isOpen: isLayoutOpen, onOpen: onLayoutOpen, onClose: onLayoutClose } = useDisclosure()
 
   const renderElement = (element, columnId, provided, snapshot) => {
     const props = {
@@ -453,7 +465,19 @@ const Section = ({
           zIndex={2}
         >
           <ColumnLayout
-            onSelectLayout={(layout) => onLayoutChange(section.id, layout)}
+            isOpen={isLayoutOpen}
+            onClose={onLayoutClose}
+            onSelectLayout={(layout) => {
+              onLayoutChange(section.id, layout);
+              onLayoutClose();
+            }}
+            TriggerComponent={() => <IconButton
+              icon={<FaColumns />}
+              aria-label="Change column layout"
+              size="sm"
+              variant="ghost"
+              onClick={onLayoutOpen}
+            />}
           />
           <IconButton
             icon={<FaTrash />}

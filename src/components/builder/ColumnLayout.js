@@ -58,24 +58,14 @@ const layouts = [
   },
 ]
 
-const ColumnLayout = ({ onSelectLayout }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-
+const ColumnLayout = ({ isOpen, onClose, onSelectLayout, TriggerComponent }) => {
   const handleLayoutSelect = (layout) => {
-    onSelectLayout(layout.columns)
-    onClose()
+    onSelectLayout(layout)
   }
 
   return (
     <>
-      <IconButton
-        icon={<FaColumns />}
-        aria-label="Change column layout"
-        onClick={onOpen}
-        size="sm"
-        variant="ghost"
-      />
-
+      {TriggerComponent && <TriggerComponent />}
       <Modal isOpen={isOpen} onClose={onClose} size="xl">
         <ModalOverlay />
         <ModalContent>
